@@ -6,11 +6,11 @@ $color-light: #fff;
 $color-dark: #444;
 
 $font-logo: 'Sacramento',
-cursive;
+    cursive;
 $font-header: 'Oswald',
-sans-serif;
+    sans-serif;
 $font-text: 'Source Sans Pro',
-sans-serif;
+    sans-serif;
 
 /* Global */
 
@@ -55,11 +55,11 @@ body {
 }
 
 .sidebar {
-    flex: 1 0 0;
+    flex: 1;
 }
 
 .posts {
-    flex: 2 0 0;
+    flex: 2;
 }
 
 .sidebar,
