@@ -79,29 +79,32 @@
 
         /* [DONE] START LOOP: for every article: */
         for(let article of articles){
-            console.log('Articles: ' + article);
+            //console.log('Articles: ' + article);
 
             /* [DONE] find tags wrapper */
             const findedWrapper = article.querySelector(optArticleTagsSelector);
-            console.log('findedWrapper: ' + findedWrapper);
+            //console.log('findedWrapper: ' + findedWrapper);
 
             /* [DONE] make html variable with empty string */
-            let html = '';
+            //let html = '';
 
             /* [DONE] get tags from data-tags attribute */
             let articleTags = article.getAttribute('data-tags');
-            console.log('articleTags: ' + articleTags);
+            //console.log('articleTags: ' + articleTags);
 
             /* split tags into array */
-
+            const articleTagsArray = articleTags.split(' ');
+            //console.log('articleTagsArray: ' + articleTagsArray);
             /* START LOOP: for each tag */
-
-            /* generate HTML of the link */
-
-            /* add generated code to html variable */
-
+            for(let tag of articleTagsArray){
+                //console.log('tag: ' + tag)
+                /* generate HTML of the link */
+                const html = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+                //console.log(html);
+                /* add generated code to html variable */
+                findedWrapper.insertAdjacentHTML('beforeend', html);
             /* END LOOP: for each tag */
-
+            } console.log(findedWrapper);
             /* insert HTML of all the links into the tags wrapper */
 
         /* END LOOP: for every article: */
