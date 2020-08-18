@@ -180,7 +180,7 @@
         /* [DONE] START LOOP: for every article: */
         for(let article of articles){
             /* [DONE] find authors wrapper */
-            const authorsWrapper = document.querySelector(optArticleAuthorsSelector);
+            const authorsWrapper = article.querySelector(optArticleAuthorsSelector);
             //console.log('authorsWrapper', authorsWrapper);
             /* [DONE] make html variable with empty string */
             var html = '';
@@ -196,7 +196,7 @@
             // 1.authorsWrapper.insertAdjacentHTML('beforeend', authorHtml); //wrzuca 3 autorów a nie 1
             html = html + authorHtml;
             /* insert HTML of all the links into the tags wrapper */
-            authorsWrapper.insertAdjacentHTML('beforeend', html); //to te wrzuca 3 autorów a nie 1
+            authorsWrapper.insertAdjacentHTML('beforeend', html);
             //console.log(authorsWrapper);
         /* END LOOP: for every article: */
         }
@@ -214,6 +214,7 @@
         const href = clickedElement.getAttribute('href');
         /* make a new constant "author" and extract author name from the "href" constant */
         const author = href.replace('#author_', '');
+        console.log('autorrr: ', author);
         /* replace '_' by ' ' s*/
         const authorWithout_ = author.replace('_', ' ');
         //console.log('author without_', authorWithout_);
