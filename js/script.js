@@ -6,7 +6,9 @@
         optTitleSelector = '.post-title',
         optArticleTagsSelector = '.post-tags .list',
         optArticleAuthorsSelector = '.post-author',
-        optTagsListSelector = '.tags.list';
+        optCloudClassCount = 5,
+        optCloudClassPrefix = 'tag-size-';
+        //optTagsListSelector = '.tags.list';
 
     /*---------------------------------------*/
     const titleClickHandler = function(event){
@@ -39,6 +41,7 @@
         /* [DONE] add class 'active' to the correct article */
         findedArticle.classList.add('active');
     };
+    /*---------------------------------------*/
     const generateTitleLinks = function(customSelector = ''){
 
 
@@ -73,6 +76,33 @@
 
     };
     generateTitleLinks();
+    /*---------------------------------------*/
+    const calculateTagsParams = function(tags){
+        /* Create new constans 'params' for object with 2 keys - max 0 & min 999999 */
+        const params = {min: 99999, max: 0};
+
+        for(let tag in tags){
+            console.log(tag + ' is used ' + tags[tag] + ' times');
+            if(tags[tag] > params.max){
+                params.max = tags[tag];
+            }
+            if(tags[tag] < params.min){
+                params.min = tags[tag];
+            }
+
+        }
+        console.log('params object: ', params);
+        return params;
+
+    };
+    /*---------------------------------------*/
+    const calculateTagClass = function(count, params){
+        const normalizedCount = count - params.min;
+        const normalizedMax = params.max - params.min;
+        const percentage = normalizedCount / normalizedMax;
+        const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+        return optCloudClassPrefix + classNumber;
+    };
     /*---------------------------------------*/
     const generateTags = function(){
 
@@ -117,19 +147,27 @@
             /* END LOOP: for each tag */
             } //console.log(findedWrapper);
             /* insert HTML of all the links into the tags wrapper */
-            console.log('allTag object: ', allTags);
+            //console.log('allTag object: ', allTags);
         /* END LOOP: for every article: */
         }
         /* [NEW] find list of tags in right column */
         const tagList = document.querySelector('.tags');
 
+        const tagsParams = calculateTagsParams(allTags);
+        console.log('tagsParams:', tagsParams);
         /* [NEW] create variable for all links HTML code */
         let allTagsHTML = '';
 
         /* [NEW] START LOOP: for each tag in allTags: */
         for(let tag in allTags){
         /* [NEW] generate code of a link and add it to allTagsHTML */
-            allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ') ' + '</a></li>';
+            //const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParams) + '</li>';
+            const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag + ' (' + allTags[tag] + ') ' + '</a></li>';
+            //console.log('tagLinkHTML:', tagLinkHTML);
+            allTagsHTML += tagLinkHTML;
+            console.log('allTagsHTML: ', allTagsHTML);
+            //allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ') ' + '</a></li>';
+
         }
         /* [NEW] END LOOP: for each tag in allTags: */
 
@@ -259,7 +297,7 @@
         for (let authorLink of authorLinks){
             /* add class active */
             authorLink.classList.add('active');
-            console.log('autorzy aktywni: ', authorLink);
+            //console.log('autorzy aktywni: ', authorLink);
         }
 
         /* END LOOP: for each found tag link */
@@ -270,10 +308,10 @@
     };
 
     const addClickListenersToAuthors = function(){
-        console.log('start funkcji AddClickListenersToAuthors');
+        //console.log('start funkcji AddClickListenersToAuthors');
         /* find all links to authors */
         const findedAuthorLinks = document.querySelectorAll('a[href^="#author"]');
-        console.log('findedAuthorsLInks', findedAuthorLinks);
+        //console.log('findedAuthorsLInks', findedAuthorLinks);
         /* START LOOP: for each link */
         for (let link of findedAuthorLinks) {
             /* add authorClickHandler as event listener for that link */
@@ -281,7 +319,7 @@
             //console.log(link);
             /* END LOOP: for each link */
         }
-        console.log('zakończenie działania funkcji addClickListenersToAuthors');
+        //console.log('zakończenie działania funkcji addClickListenersToAuthors');
     };
 
     addClickListenersToAuthors();
