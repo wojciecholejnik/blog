@@ -111,29 +111,33 @@ body {
   margin: 0 10px 0 0;
 }
 
-/* Tag Cloud */
+/* Tags Cloud */
 .tag-size-1 {
   font-size: 10px;
-  text-decoration: none;
 }
 
 .tag-size-2 {
   font-size: 14px;
-  text-decoration: none;
 }
 
 .tag-size-3 {
   font-size: 18px;
-  text-decoration: none;
 }
 
 .tag-size-4 {
   font-size: 22px;
-  text-decoration: none;
 }
 
 .tag-size-5 {
   font-size: 26px;
+}
+
+.tags-list-place a {
+  text-decoration: none;
+}
+
+/* Authors Cloud */
+.authors a {
   text-decoration: none;
 }
 /*# sourceMappingURL=style.css.map */
