@@ -1,6 +1,11 @@
 
 {
+
     'use strict';
+    const templates = {
+        articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+
+    };
     const optArticleSelector = '.post',
         optTitleListSelector = '.titles',
         optTitleSelector = '.post-title',
@@ -61,8 +66,9 @@
             /* [DONE] get the title from the title element */
 
             /* [DONE] create HTML of the link */
-            const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
-
+            //const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+            const linkHTMLData = {id: articleId, title: articleTitle};
+            const linkHTML = templates.articleLink(linkHTMLData);
             /* [DONE] insert link into titleList */
             var linksPosition = document.getElementById('title-list');
             linksPosition.insertAdjacentHTML('beforeend', linkHTML);
@@ -133,7 +139,9 @@
             for(let tag of articleTagsArray){
                 //console.log('tag: ' + tag)
                 /* generate HTML of the link */
-                const html = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+                //const html = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+                const linkHTMLData = {id: tag, title: tag};
+                const html = templates.articleLink(linkHTMLData);
                 //console.log(html);
                 /* add generated code to html variable */
                 findedWrapper.insertAdjacentHTML('beforeend', html);
@@ -256,7 +264,11 @@
             /* generate HTML of the link */
             const author_name = articleAuthor.replace(' ', '_');
             /* replace ' ' with '_'  in author name */
-            const authorHtml = '<a href="#author_' + author_name + '">' + articleAuthor + '</a>';
+            //const authorHtml = '<a href="#author_' + author_name + '">' + articleAuthor + '</a>';
+
+            const linkHTMLData = {id: author_name, title: articleAuthor};
+            const authorHtml = templates.articleLink(linkHTMLData);
+
             //console.log(authorHtml);
             /* add generated code to html variable */
             html = html + authorHtml;

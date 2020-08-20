@@ -102,6 +102,14 @@ body {
   font-style: italic;
 }
 
+.post-author a {
+  text-decoration: none;
+}
+
+.post-author li {
+  list-style-type: none;
+}
+
 .post-tags {
   display: -ms-flexbox;
   display: flex;
