@@ -1,6 +1,6 @@
 # javascript-blog
 
-  # This is an example of a small blog that uses Handlebars templates. <br>
+  ### This is an example of a small blog that uses Handlebars templates. <br>
 
   *For using this project you should use `npm install` command first.*
   
